@@ -19,12 +19,12 @@ def main_page():
 
     st.set_page_config(page_title='Hackaton', page_icon=img_favicon, layout='wide' )
     
-    pg = st.navigation([
-        st.Page('MainPage.py', title="Main Page", icon=":material/home:"),
-        st.Page('pages/Simplificator.py', title="Simplificador de contenido", icon=":material/search:"),
-        st.Page('pages/Task.py', title="Creador de tareas", icon=":material/list:")
-    ])
-    pg.run()
+    # pg = st.navigation([
+    #     st.Page('MainPage.py', title="Main Page", icon=":material/home:"),
+    #     st.Page('Simplificator.py', title="Simplificador de contenido", icon=":material/search:"),
+    #     st.Page('Task.py', title="Creador de tareas", icon=":material/list:")
+    # ])
+    # pg.run()
         
     # CSS personalizado para centrar las columnas y ajustar el pie de página
     st.markdown("""
@@ -41,17 +41,38 @@ def main_page():
 
             /* Ajustar los estilos de los botones */
             .stButton>button {
-                height: 200px;  /* Cambia la altura según sea necesario */
-                font-size: 100px;  /* Ajusta el tamaño de la fuente si es necesario */
+                height: 150px !important;  /* Altura fija para los botones */
+                width: 200px !important;   /* Ancho fijo para los botones */
+                font-size: 20px !important;  /* Tamaño de la fuente fijo */
+                border-radius: 8px !important;  /* Bordes redondeados */
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                background-color: #4CAF50 !important;  /* Cambiar el fondo para mayor visibilidad */
+                color: white !important;  /* Asegura que el texto sea visible */
             }
-
-            /* Estilos para centrar las columnas en el layout */
-            .stColumns {
+        
+            /* Estilo para las imágenes y botones */
+            .button-container {
                 display: flex;
                 justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+                object-fit: contain;  /* Mantiene la proporción de las imágenes */
+                margin-bottom: 20px;
             }
 
-            /* Imagen como pie de página */
+            .button-container img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                object-fit: contain;  /* Mantiene la proporción de las imágenes */
+                margin-bottom: 20px;
+            }
+            
             .footer {
                 position: fixed;
                 bottom: 10px;  /* Ajuste la posición vertical (a 10px del borde inferior) */
@@ -62,64 +83,85 @@ def main_page():
                 background-color: transparent;
             }
 
+
             .footer img {
                 width: 150px;  /* Ajusta el tamaño de la imagen del pie de página */
             }
         </style>
     """, unsafe_allow_html=True)
 
-    st.title('BlueHub')
+    st.title('AccessLink')
 
     # Crear las columnas y los botones
-    c1, c2, c3 = st.columns(3,vertical_alignment="center")
+    c1, c2 = st.columns(2,vertical_alignment="center")
 
     with c1:
-        
-        st.subheader("Simplificador de contenido")
-        image_path = 'resources/simplificar2.png'
-        with open(image_path, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read()).decode()
-        with st.container(border=True):
-            st.markdown(f"""
-                <a href="/Simplificator" target="_self">
-                    <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable" width="150" height="150">
-                </a>
-            """, unsafe_allow_html=True)
+        st.markdown('<h3 style="text-align: center;">Simplificador de contenido</h3>', unsafe_allow_html=True)
+        #st.subheader("Simplificador de contenido")
+        c1_int, c2_int, c3_int = st.columns(3,vertical_alignment="center")
+        with c2_int:
+            image_path = 'resources/simplificar2.png'
+            with open(image_path, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read()).decode()
+                with st.container():
+                    st.markdown(f"""
+                        <a href="/Simplificator" target="_self" style="display: block; text-align: center;">
+                            <div class="button-container">
+                                <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable">
+                            </div>
+                        </a>
+                    """, unsafe_allow_html=True)
 
-        
-        st.subheader("Detector de emociones")
-        image_path = 'resources/emociones2.png'
-        with open(image_path, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read()).decode()
-        with st.container(border=True):
-            st.markdown(f"""
-                <a href="/Emociones" target="_self">
-                    <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable" width="150" height="150">
-                </a>
-            """, unsafe_allow_html=True)
+        st.markdown('<h3 style="text-align: center;">Detector de emociones</h3>', unsafe_allow_html=True)
+
+        #st.subheader("Detector de emociones")
+        c1_int, c2_int, c3_int = st.columns(3,vertical_alignment="center")
+        with c2_int:
+            image_path = 'resources/emociones2.png'
+            with open(image_path, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read()).decode()
+                with st.container():
+                    st.markdown(f"""
+                        <a href="/Emociones" target="_self" style="display: block; text-align: center;">
+                            <div class="button-container">
+                                <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable">
+                            </div>
+                        </a>
+                    """, unsafe_allow_html=True)
 
     with c2:
-        st.subheader("Creador de tareas")
-        image_path = 'resources/lista2.png'
-        with open(image_path, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read()).decode()
-        with st.container(border=True):
-            st.markdown(f"""
-                <a href="/Simplificator" target="_self">
-                    <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable" width="150" height="150">
-                </a>
-            """, unsafe_allow_html=True)
+        
+        st.markdown('<h3 style="text-align: center;">Creador de tareas</h3>', unsafe_allow_html=True)
+        #st.subheader("Creador de tareas")
+        c1_int, c2_int, c3_int = st.columns(3,vertical_alignment="center")
+        with c2_int:
+            image_path = 'resources/lista2.png'
+            with open(image_path, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read()).decode()
+                with st.container():
+                    st.markdown(f"""
+                        <a href="/Task" target="_self" style="display: block; text-align: center;">
+                            <div class="button-container">
+                                <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable">
+                            </div>
+                        </a>
+                    """, unsafe_allow_html=True)
 
-        st.subheader("Añadir")
-        image_path = 'resources/add.png'
-        with open(image_path, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read()).decode()
-        with st.container(border=True):
-            st.markdown(f"""
-                <a href="/Add" target="_self">
-                    <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable" width="150" height="150">
-                </a>
-            """, unsafe_allow_html=True)
+        st.markdown('<h3 style="text-align: center;">Añadir</h3>', unsafe_allow_html=True)
+        #st.subheader("Añadir")
+        c1_int, c2_int, c3_int = st.columns(3,vertical_alignment="center")
+        with c2_int:
+            image_path = 'resources/add.png'
+            with open(image_path, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read()).decode()
+                with st.container():
+                    st.markdown(f"""
+                        <a href="/New" target="_self" style="display: block; text-align: center;">
+                            <div class="button-container">
+                                <img src="data:image/png;base64,{encoded_string}" alt="Imagen Clickeable">
+                            </div>
+                        </a>
+                    """, unsafe_allow_html=True)
 
     # Pie de página con el logo de Bluetab alineado a la derecha
     st.markdown(f"""
