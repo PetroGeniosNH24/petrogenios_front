@@ -2,13 +2,13 @@ import os
 import streamlit as st
 import base64
 import json
-import requests
-from config.config import URL_BACKEND, HEADER_DATABRICK
 
 BASE_PATH = '.'
 
-
 def simplificator():
+    
+    
+
     
     img_favicon = os.path.join(BASE_PATH,'resources','favicon_bluetab.png')
     img_bluetab = os.path.join(BASE_PATH,'resources','bluetab.png')
@@ -18,7 +18,7 @@ def simplificator():
     st.markdown("""
         <style>
                .block-container {
-                    padding-top: 2.8rem;
+                    padding-top: 2.2rem;
                     padding-bottom: 0rem;
                     padding-left: 5rem;
                     padding-right: 5rem;
@@ -43,42 +43,32 @@ def simplificator():
                     width: 150px;  /* Ajusta el tamaño de la imagen del pie de página */
                 }
         </style>
-        """, unsafe_allow_html=True)        
+        """, unsafe_allow_html=True)            
+                   
     
     c1,c2,c3 = st.columns((0.5,5.5,6))
     
     with c1:    
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
-        st.image('resources/simplificar2.png', width=40)
+        st.image('resources/signos2.png', width=40)
         st.markdown('</div>', unsafe_allow_html=True)
     
     with c2:    
-        st.header('BlueSimplificator')
-        
-    
+        st.header('BlueSignLanguage')
     
     text = st.text_area("¿Qué quieres simplificar?")
-
-    simplified = ''
-    promt = "text"
-
-    if st.button('Simplify',type='primary'):  
-        if text.startswith("http"):
-            response = requests.get(text)
-
-            if response.status_code == 200:
-                text = response.text
-                promt = "text_html"
-            else:
-                text = "Error al acceder a la URL: {response.status_code}"
-
-        simplified = requests.post(f"{URL_BACKEND}/simplificator/text", headers=HEADER_DATABRICK, data=json.dumps({"promt":promt, "text":text})).json().get("message")
+    
+    response = ''
+    if st.button('Simplify',type='primary'):   
+        response = 'Hola'
     
     with st.container(border=True):
         st.subheader('Simplificación:')
-        st.text(simplified)
+        st.text(response)
         
         
+    c1,c2,c3 = st.columns((2,8,2))
+    
     # Pie de página con el logo de Bluetab alineado a la derecha
     st.markdown(f"""
         <div class="footer">
