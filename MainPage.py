@@ -68,7 +68,7 @@ def main_page():
             image_url4 = "https://cdn-icons-png.flaticon.com/512/1345/1345063.png"
 
             st.markdown(f"""
-                <a href="/" target="_self">
+                <a href="/Task" target="_self">
                     <img src="{image_url4}" alt="Imagen Clickeable" width="150" height="150">
                 </a>
             """, unsafe_allow_html=True)

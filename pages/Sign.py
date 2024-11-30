@@ -42,13 +42,7 @@ def simplificator():
     
     with c3:
         st.image(img_bluetab,width=300)
-    
-    
-    
-    
-    
-        
-    
-    
+
+
 if __name__ == "__main__":
     simplificator()

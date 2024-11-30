@@ -26,27 +26,18 @@ def simplificator():
         </style>
         """, unsafe_allow_html=True)            
                    
-    st.header('BlueSimplificator')
+    st.header('BlueTaskCreator')
     
-    text = st.text_area("¿Qué quieres simplificar?")
+    text = st.text_area("¿Qué tareas quieres organizar?")
 
     simplified = ''
     promt = "text"
 
-    if st.button('Simplify',type='primary'):  
-        if text.startswith("http"):
-            response = requests.get(text)
-
-            if response.status_code == 200:
-                text = response.text
-                promt = "text_html"
-            else:
-                text = "Error al acceder a la URL: {response.status_code}"
-
-        simplified = requests.post(f"{URL_BACKEND}/simplificator/text", headers=HEADER_DATABRICK, data=json.dumps({"promt":promt, "text":text})).json().get("message")
+    if st.button('Task Creator',type='primary'):  
+        simplified = requests.post(f"{URL_BACKEND}/simplificator/task", headers=HEADER_DATABRICK, data=json.dumps({"text":text})).json().get("message")
     
     with st.container(border=True):
-        st.subheader('Simplificación:')
+        st.subheader('Creación de tareas:')
         st.text(simplified)
         
         
