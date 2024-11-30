@@ -6,9 +6,8 @@ import requests
 
 BASE_PATH = '.'
 
+
 def simplificator():
-    
-    
     
     img_favicon = os.path.join(BASE_PATH,'resources','favicon_bluetab.png')
     img_bluetab = os.path.join(BASE_PATH,'resources','bluetab.png')
@@ -30,17 +29,22 @@ def simplificator():
     
     text = st.text_area("¿Qué quieres simplificar?")
 
-    if text.startswith("https") or text.startswith("http"):
-        response = 'Es URL'
-    else:
-        response = 'No es URL'
+    simplified = ''
 
-    if st.button('Simplify',type='primary'):   
-        response = dbutils.notebook.run("/path/to/notebook_simplificador", 60, {"input_text": text})
+    if st.button('Simplify',type='primary'):  
+        if text.startswith("http"):
+            response = requests.get(text)
+
+            if response.status_code == 200:
+                text = response.text
+            else:
+                text = "Error al acceder a la URL: {response.status_code}"
+
+        simplified = dbutils.notebook.run("/path/to/notebook_simplificador", 60, {"input_text": text})
     
     with st.container(border=True):
         st.subheader('Simplificación:')
-        st.text(response)
+        st.text(simplified)
         
         
     c1,c2,c3 = st.columns((2,8,2))
