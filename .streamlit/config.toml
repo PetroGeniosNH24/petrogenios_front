@@ -3,3 +3,4 @@ primaryColor = "#e34b10"  # Color principal de la interfaz (puede ser un código
 #secondaryBackgroundColor = "#6a6fb4"
 #backgroundColor = "#FFFFFF"  # Color de fondo
 #font = "sans serif"  # Fuente de la aplicación (puede ser "serif", "sans serif" o "monospace")
+

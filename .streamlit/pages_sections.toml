@@ -1,0 +1,19 @@
+[[pages]]
+path = "MainPage.py"
+name = "Home"
+icon = "🏠"
+
+[[pages]]
+path = "pages/Sign.py"
+name = "Sign"
+icon = "🏠"
+
+[[pages]]
+path = "pages/Simplificator.py"
+name = "Simplificator"
+icon = "🏠"
+
+[[pages]]
+path = "pages/Task.py"
+name = "Task"
+icon = "🏠"
